@@ -1,8 +1,28 @@
+
+<?php include_once "app/autoload.php";?>
+
+<?php
+
+if(isset($_GET['logout']) AND $_GET['logout'] == 'ok'){
+
+	session_destroy();
+	header('location:index.php');
+
+}
+
+if(!isset($_SESSION['name'])){
+
+	header('location:index.php');
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Development Area</title>
+	<title><?php echo $_SESSION['name'];?></title>
 	<!-- ALL CSS FILES  -->
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
@@ -11,66 +31,42 @@
 <body>
 	
 	
-
 	<div class="wrap shadow">
 	<a class="btn btn-primary btn-sm" href="users.php">All Users</a>
 		<div class="card">
 			<div class="card-body ">
 				<div class="profile">
-					<img style="width: 150px; height: 150px; display: block; margin: auto; border-radius: 40%;" src="assets/media/img/8ef2ccf68c66410427202206446df4b2img.jpg" alt="">
+					<img style="width: 150px; height: 150px; display: block; margin: auto; border-radius: 40%;" src="images/users/<?php echo $_SESSION['image'];?>" alt="">
 				</div>
-				<h2 style="text-align: center;">Saiful Islam</h2>
+				<h2 style="text-align: center;"><?php echo $_SESSION['name'];?></h2>
 
 				<table class="table table-striped">
 
 					<tr>
 						<td>Name</td>
-						<td>Name</td>
+						<td><?php echo $_SESSION['name'];?></td>
 					</tr>
 					<tr>
-						<td>Name</td>
-						<td>Name</td>
+						<td>Email</td>
+						<td><?php echo $_SESSION['email'];?></td>
 					</tr>
 					<tr>
-						<td>Name</td>
-						<td>Name</td>
+						<td>Cell</td>
+						<td><?php echo $_SESSION['cell'];?></td>
 					</tr>
 					<tr>
-						<td>Name</td>
-						<td>Name</td>
+						<td>Uname</td>
+						<td><?php echo $_SESSION['uname'];?></td>
 					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Name</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Name</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Name</td>
-					</tr>
-					<tr>
-						<td>Name</td>
-						<td>Name</td>
-					</tr>
+					
 
 				</table>
 
-				<a class="btn btn-secondary btn-sm" href="">Log Out</a>
+				<a class="btn btn-secondary btn-sm" href="?logout=ok">Log Out</a>
 			</div>
 		</div>
 	</div>
 	
-
-
-
-
-
-
-
-
 
 	<!-- JS FILES  -->
 	<script src="assets/js/jquery-3.4.1.min.js"></script>
