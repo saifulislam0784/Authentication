@@ -106,7 +106,7 @@
 
 		} else{
 
-			insert("INSERT INTO users ( name, email, cell, uname, pass, image, terms) VALUES ('$name','$email','$cell','$uname','$hash', '. $unique_name','$terms')");
+			insert("INSERT INTO users ( name, email, cell, uname, pass, image, terms) VALUES ('$name','$email','$cell','$uname','$hash', '$unique_name','$terms')");
 			
 			move_uploaded_file($file_tmp, 'images/users/' . $unique_name) ;
 

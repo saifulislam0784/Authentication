@@ -1,3 +1,5 @@
+<?php require_once "app/autoload.php";?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,67 +31,35 @@
 						</tr>
 					</thead>
 					<tbody>
+
+						<?php
+						
+							$sql = "SELECT * FROM users";
+							$data = $connection -> query($sql);
+							$i = 1;
+							while($user = $data -> fetch_assoc() ):
+						
+						?>
+
 						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
+							<td><?php echo $i;$i++;?></td>
+							<td><?php echo $user['name'];?></td>
+							<td><?php echo $user['email'];?></td>
+							<td><?php echo $user['cell'];?></td>
+							<td><img src="images/users/<?php echo $user['image'];?>" alt=""></td>
 							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
-							</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Asraful Haque</td>
-							<td>haq@gmail.com</td>
-							<td>01717700811</td>
-							<td><img src="assets/media/img/pp_photo/istockphoto-615279718-612x612.jpg" alt=""></td>
-							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
+								<a class="btn btn-sm btn-info" href="profile.php?user_id=<?php echo $user['id'];?>">View</a>
+
+								<?php if($user['id'] == $_SESSION['user_id']): ?>
+
+									<a class="btn btn-sm btn-warning" href="#">Edit</a>
+									<a class="btn btn-sm btn-danger" href="#">Delete</a>
+
+								<?php endif; ?>
 							</td>
 						</tr>
 						
+						<?php endwhile; ?>
 
 					</tbody>
 				</table>
@@ -97,11 +67,6 @@
 		</div>
 	</div>
 	
-
-
-
-
-
 
 
 	<!-- JS FILES  -->
